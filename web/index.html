@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sheet</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    </head>
+
+    <body>
+
+        <!-- Side bar -->
+        <div id="mySidenav" class="sidenav">
+
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+            <div onclick="newsheet()" id="newsheet" style="display: flex; justify-content: space-between; padding-right: 15px;">
+                <p>New Sheet</p>
+                <span class="material-symbols-outlined">note_add</span>
+            </div>
+
+            <div onclick="opensheet()" id="opensheet" style="display: flex; justify-content: space-between; padding-right: 15px;">
+                <p>Open Sheet</p>
+                <span class="material-symbols-outlined">folder_open</span>
+            </div>
+
+            <div onclick="savesheet()" id="savesheet" style="display: flex; justify-content: space-between; padding-right: 15px;">
+                <p>Save</p>
+                <span class="material-symbols-outlined">save</span>
+            </div>
+
+        </div>
+
+        <!-- Top nav bar -->
+        <div id="topbar">
+            <div style="display: flex; align-items: center;">
+                <span onclick="openNav()" id="dropdownicon" class="material-symbols-outlined highlighticon" style="margin-left: 10px ; margin-right: 10px; font-size: 220%; margin-top: 2px;">menu</span>                
+                <div style="background-color: var(--primcolor); width: 1px; height: 35px; margin-right: 15px;"></div>
+                <input id="listnameinputbox" type="text" placeholder="Sheet" style="background-color: #1E1F1E; border: 1px solid var(--primcolor); min-width: 30vh; margin-right: 15px; padding: 4px; padding-left: 10px; color:var(--primcolor); font-size: 20px; user-select: none; outline: none; max-height: 40px;" spellcheck='false' autocorrect='off'>
+                <select id="currencyselect" style="background-color: var(--bgcolor); color: var(--primcolor); padding: 5px; border-style: none; outline: none;">
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                    <option value="CAD">CAD</option>
+                    <option value="AUD">AUD</option>
+                </select>
+            </div>
+
+            <div style="display: flex; margin-right: 15px;">
+                <div class="vistab" id="recordstabbutton">
+                    <p style="margin-right: 5px;">Records</p>
+                    <span class="material-symbols-outlined">receipt_long</span>
+                </div>
+                <div class="vistab" id="summarytabbutton">
+                    <p style="margin-right: 5px;">Analytics</p>
+                    <span class="material-symbols-outlined">monitoring</span>
+                </div>
+            </div>
+        </div>
+        
+        <hr style="border: none; border-top: 1px solid #DBD5B5; color: #141514; background-color: #141514; height: 1px; width: 100%; margin: 0; margin-bottom: 0px; display: flex;">
+        
+        <div id="dottedbg"></div>
+        
+        <!-- main panel -->
+        <div style="display: flex; flex-direction: row; justify-content: space-between; height: 100vh; margin-top: 5px;" id="main_panel">
+
+            <!-- records page -->
+            <div id="recordspanel" style="display:flex; flex-direction: column; width: 100%; height: 87vh;">
+                <div id="tasksbox" style="margin-bottom: 5px;">
+                    <h1 style="padding-right:5px;margin:0; font-size: 150%; width: fit-content; margin-left: 10px;">Transactions</h1>
+                    <span onclick="addnewtransaction()" style="align-self: center;" id="addexp" class="material-symbols-outlined addicon">add_box</span>
+                    <span style="align-self: center; justify-self: flex-end;" class="material-symbols-outlined" id="catoption"></span>
+                </div>
+
+                <container id="transactioncontainer" style="overflow-y: scroll; margin-right: 10px;">
+                </container>
+            </div>
+
+            <!-- summary page -->
+            <div id="summarypanel" style="display: flex; width: 100%; height: 100%; margin-left: 6px; flex-direction: column;">
+
+                <!-- Summary Row 1 -->
+                <div style="display: flex; gap: 5px; height: 351px;">
+
+                    <div style="display: flex; flex-direction: column; height: 100%;">
+                        
+                        <!-- Period Selector -->
+                        <div style="background-color: var(--primcolor); border-width: 1px; border-style: solid; padding: 10px; height: fit-content; width: 255px; display: flex; align-items: center; justify-content: space-between;">
+                            <div style="color: var(--bgcolor);">Summary Period</div>
+                            <input value="2000-01" type="month" id="periodselector" style="margin-left: 15px; padding: 5px; padding-right: 0px; font-size: 10px; height: fit-content; border-width: 1px;outline: none; background-color: var(--primcolor); color: var(--bgcolor); border-style: solid; border-color: var(--bgcolor);">
+                        </div>
+    
+                        <!-- Expenditure By Group -->
+                        <div id="spendingsummarybox1" style="margin-top: 5px; flex-direction: column; display: flex; padding: 15px 25px 18px 25px; width: 225px; height: 264px; min-height: 264px; max-height: 264px; background-color: var(--bgcolor2); border-style: solid; border-width: 1px;">
+                                    
+                            <div style="display: flex; margin-bottom: 5px; justify-content: center;">
+                                <h1 style="margin: 0px;font-size: 20px; ">Spending</h1>
+                            </div>
+    
+                            <div style="display: flex; flex-direction: row; gap: 10px; justify-content: center;">
+                                <h1 id="expenditure" style="font-size: 30px; margin: 0px; color: #F8333C;">00.00</h1>
+                                <h1 class="currency" style="font-size: 20px; margin: 0px; align-self: center;">USD</h1>
+                            </div>
+    
+                            <hr style="width:100%; color: #DBD5B5; margin-top: 5px; margin-bottom: 10px;">
+    
+                            <div style="display: flex; flex-direction: row; justify-content: center; margin: 0px;">
+                                <h3 style="margin:0px; margin-bottom: 10px;" >By Category</h4>
+                            </div>
+                                
+                            <div style="position: relative;">
+                                <div id="spendingsortbycatcontainer" style="overflow-y: auto; max-height: 150px; min-height: 150px; padding-right: 20px; scrollbar-width: 2px;">
+                                </div>
+                                <p class="centered datainsuff" style="margin-top: 50px;">Data Insufficient</p>
+                            </div>
+                                
+                        </div>
+    
+                    </div>
+                        
+                    <!-- Graph -->
+                    <div class="summary_visual"">
+                        <p class="centered datainsuff">Data Insufficient</p>
+                        <p class="summary_visuals_title">Balance over time</p>
+                        <div class="graphcontainer">
+                            <object class='graph' id="graph" data="mygraph.svg" type="image/svg+xml"></object>
+                        </div>
+                    </div>
+                        
+                    <!-- Expense Pie Chart -->
+                    <div class="summary_visual"">
+                        <p class="centered datainsuff">Data Insufficient</p>
+                        <p class="summary_visuals_title">Expenditure</p>
+                        <div class="piechartcontainer">
+                            <object class="piechart" id="piechart" data="mypiegraph.svg" type="image/svg+xml" "></object>
+                        </div>
+                    </div>
+        
+                    <!-- Income Pie Chart -->
+                    <div class="summary_visual"">
+                        <p class="centered datainsuff">Data Insufficient</p>
+                        <p class="summary_visuals_title">Income</p>
+                        <div class="piechartcontainer">
+                            <object class="piechart" id="piechartincome" data="mypiegraphincome.svg" type="image/svg+xml" "></object>
+                        </div>
+                    </div>
+                        
+                </div>
+
+                <!-- Summary Row 2 -->
+                <div style="display: flex; gap: 5px; height: 253px; margin-top: 5px; margin-right: 3px;">
+
+                    <!-- Income By Group -->
+                    <div id="spendingsummarybox2" style="flex-direction: column; display: flex; padding: 15px 25px 18px 25px; min-width: 225px; min-height: 105%; max-height: 105%; height: 105%; background-color: var(--bgcolor2); border-style: solid; border-width: 1px;">
+                                
+                        <div style="display: flex; margin-bottom: 5px; justify-content: center;">
+                            <h1 style="margin: 0px;font-size: 20px; ">Income</h1>
+                        </div>
+
+                        <div style="display: flex; flex-direction: row; gap: 10px; justify-content: center;">
+                            <h1 id="income" style="font-size: 30px; margin: 0px; color: #44AF69;">00.00</h1>
+                            <h1 class="currency" style="font-size: 20px; margin: 0px; align-self: center;">USD</h1>
+                        </div>
+
+                        <hr style="width:100%; color: #DBD5B5; margin-top: 5px; margin-bottom: 10px;">
+
+                        <div style="display: flex; flex-direction: row; justify-content: center; margin: 0px;">
+                            <h3 style="margin:0px; margin-bottom: 10px;" >By Category</h4>
+                        </div>
+                            
+                        <div style="position: relative;">
+                            <div id="incomesortbycatcontainer" style="overflow-y: auto; min-height: 150px; max-height: 150px; padding-right: 20px; scrollbar-width: 2px;">
+                            </div>
+                            <p class="centered datainsuff" style="margin-top: 50px;">Data Insufficient</p>
+                        </div>
+                            
+                    </div>
+                        
+                    <!-- Statement box -->
+                    <div style="display: flex; border: 1px solid var(--primcolor); background-color: var(--bgcolor2); padding: 0px; width: 100%; height: 130px; justify-content: space-between;">
+                            
+                        <span id="statementboxarrowleft" class="material-symbols-outlined highlighticon" style="align-self: center; padding: 15px;">arrow_back_ios</span>
+                            
+                        <div id="statementbox" style="display: flex; flex-direction: column; padding-top: 27px; justify-content: space-between;">
+                            
+                            <!-- Statement -->
+                            <div style="margin-top: 20px">
+                                <div class='statement' style="display: flex; gap: 6px;">
+                                    <p>Your spending in the month selected is <span id="spentamount2">0%</span> &#40;<span id="spentamount1">00.00</span><span class="currency"> USD</span>&#41; <span id="spentamount3">more</span> than the month before.</p>
+                                </div>
+
+                                <div class='statement' style="display: none; gap: 6px;">
+                                    <p>Your monthly average spending is <span id="monthlyaveragespending" style="color: #F8333C">00.00</span> <span class="currency"> USD</span> in the selected year.</p>
+                                </div>
+
+                                <div class='statement' style="display: none; gap: 6px;">
+                                    <p>Your income in the month selected is <span id="savedamount2">0%</span> &#40;<span id="savedamount1">00.00</span> <span class="currency"> USD</span>&#41; <span id="savedamount3">more</span> than the month before.</p>
+                                </div>
+
+                                <div class='statement' style="display: none; gap: 6px;">
+                                    <p>Your monthly average income is <span id="monthlyaverageincome" style="color: #44AF69">00.00</span> <span class="currency">USD</span> in the selected year.</p>
+                                </div>
+
+                                <div class='statement' style="display: none; gap: 6px;">
+                                    <p>You spent the most on <span id="mostspentcat" style="color: #F8333C">Shopping</span> in the selected month.</p>
+                                </div>
+                            </div>
+
+                            <!-- Statement index -->
+                            <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
+                                <span class="material-symbols-outlined statementicons" style="font-size: 12px; color: #DBD5B5;">nearby</span>
+                                <span class="material-symbols-outlined statementicons" style="font-size: 12px; color: #dbd5b565;">nearby</span>
+                                <span class="material-symbols-outlined statementicons" style="font-size: 12px; color: #dbd5b565;">nearby</span>
+                                <span class="material-symbols-outlined statementicons" style="font-size: 12px; color: #dbd5b565;">nearby</span>
+                                <span class="material-symbols-outlined statementicons" style="font-size: 12px; color: #dbd5b565;">nearby</span>
+                            </div>
+                        </div>
+
+                        <span id="statementboxarrowright" class="material-symbols-outlined highlighticon" style="align-self: center; padding: 7px;">arrow_forward_ios</span>
+                            
+                    </div>
+
+                    <!-- Balance box -->
+                    <div style="border: 1px solid var(--primcolor); background-color: var(--bgcolor2); padding: 10px 20px 10px 20px; width: 225px; height: 110px; display: flex; flex-direction: column; justify-content: center;">
+                        <div style="display: flex; margin-bottom: 5px; justify-content: center;">
+                            <h1 style="margin: 0px;font-size: 20px; ">Current Blance</h1>
+                        </div>
+        
+                        <div style="display: flex; flex-direction: row; gap: 10px; justify-content: center;">
+                            <h1 style="font-size: 30px; margin: 0px; color: #44AF69;" id="currentbalance">00.00</h1>
+                            <h1 class="currency" style="font-size: 20px; margin: 0px; align-self: center;">USD</h1>
+                        </div>
+        
+                        <hr style="width:100%; color: #DBD5B5; margin-top: 5px; margin-bottom: 5px;">
+                    </div>
+                    
+                </div>
+
+            </div>
+
+        </div>
+
+        <script defer src="eel.js"></script>
+        <script defer src="main.js"></script>
+    </body>
+</html>
+
+<!-- expenditure template -->
+<template class="exptemplate"> 
+    <div class="exppanel">
+        <!-- <h1 class="expindex">1</h1> -->
+        
+        <input class="eventname" placeholder="Transaction Name" style="margin-left: 15px; background-color: #14151400; border-style: none; color: #DBD5B5; outline: none;" type="text">
+        <div style="background-color: var(--primcolor); width: 1px; height: 15px;"></div>
+        
+        <input class='date' placeholder="00-00-0000" style="background-color: #14151400; border-style: none; color: #DBD5B5; outline: none;" type="date" id="eventname">
+        
+        <div style="background-color: var(--primcolor); width: 1px; height: 15px;"></div>
+        
+        <div style="display: flex; gap: 5px;">
+            <input class="amount" placeholder="Amount" style="margin-right: 10px; text-align: right; max-width: 70px; background-color: #14151400; border-style: none; color: #DBD5B5; outline: none; width: fit-content;" type="number">
+            <h1 class="currency" style="font-size: 15px;">USD</h1>
+        
+        </div>
+        <div style="background-color: var(--primcolor); width: 1px; height: 15px;"></div>
+        
+        <div style="display: flex; gap: 5px;">
+            <h1 style="font-size: 15px;">Category</h1>
+            <select class='cat' style="margin-left: 5px; height: fit-content; align-self: center; outline: none; background-color: #14151400; color: #DBD5B5; border-width: 1px; border-style: none; border-color: #DBD5B5; padding-left: 15px;">
+                <option value="None/Misc">None/Misc</option>
+                <option value="Rent">Rent</option>
+                <option value="Food">Food</option>
+                <option value="Supplies">Supplies</option>
+                <option value="Entertainment">Entrtmnt</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Transport">Transport</option>
+                <option value="Medical">Medical</option>
+                <option value="Salary">Salary</option>
+                <option value="Fitness">Fitness</option>
+                <option value="Insurance">Insurance</option>
+            </select>
+        </div>
+        <div class="removeiconbox">
+            <span class="material-symbols-outlined">close</span>
+        </div>
+    </div>
+</template>
+
+<template class="summarycatlisttemplate">
+    <div style="display: flex; justify-content: space-between;">
+        <h4 style="margin:0px;" class="categoryname" >Food</h4>
+        <div style="display: flex;">
+            <h4 style="margin-right: 10px; color: #F8333C;" class="catamount">50</h4>     
+            <h4 style="margin:0px;" class="currency">USD</h4>     
+        </div>
+    </div>
+</template>
+
+<template class="summarycatlisttemplate2">
+    <div style="display: flex; justify-content: space-between;">
+        <h4 style="margin:0px;" class="categoryname" >Food</h4>
+        <div style="display: flex;">
+            <h4 style="margin-right: 10px; color: #44AF69;" class="catamount">50</h4>     
+            <h4 style="margin:0px;" class="currency">USD</h4>     
+        </div>
+    </div>
+</template>
+
+<template class="item">
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <span class="material-symbols-outlined" style="font-size: 15px;"">nearby</span>
+        <p>Spent 15% more</p>
+    </div>
+</template>

@@ -6,7 +6,7 @@ A financial management application made in python with statistics and visual sum
 The records page holds transaction records created by the user. You can specify the category of each transaction which allows sorting and grouping of similar transactions to generate a summary. 
 <br />
 
-![Page1](https://github.com/sydluqmaan/Finances-Manager/assets/138065925/d5305f2d-f9a5-473c-90ee-76df804d1b18)
+![Page1](https://github.com/sydluqmaan/Finances-Manager/assets/138065925/e4bb5f79-d542-4f6e-b91b-e5fad53eb0ad)
 
 ## Summary Page
 The summary page displays a visual summary of your records for the selected month.
@@ -16,10 +16,10 @@ The summary page displays a visual summary of your records for the selected mont
 * Lastly the balance box on the right shows the current total balance.
 <br />
 
-![Page2](https://github.com/sydluqmaan/Finances-Manager/assets/138065925/de14b6df-fffd-4795-9515-f10a47eb21d4)
+![Page2](https://github.com/sydluqmaan/Finances-Manager/assets/138065925/74c044b7-d36d-431f-8ec6-1e8f03b8816b)
 
 ## Record Sheet Management
 You'll find the options to create, save and load sheets in the side menu. It can be accessed with the menu icon on the top left. 
 <br />
 
-![Page3](https://github.com/sydluqmaan/Finances-Manager/assets/138065925/f356c68d-c43e-46d4-b9c0-4c3f6dd3f6c5)
+![Page3](https://github.com/sydluqmaan/Finances-Manager/assets/138065925/b9c9b74e-2f21-4b50-a773-fecddc31fddf)
